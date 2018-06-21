@@ -6,20 +6,30 @@ import json
 import time
 
 import colorama
+import progressbar
 import pyautogui
+
+import settings
 
 class DownloadControl():
     count = 0
 
-    def __init__(self, work_dir, data_dir):
+    def __init__(self, params_dict):
         """Инициализация параметров"""
         DownloadControl.count += 1
+        self.params_dict = params_dict
 
-        self.work_dir = work_dir
-        self.data_dir = data_dir
+        self.work_dir = self.params_dict.get('work_dir', None)
+        self.data_dir = self.params_dict.get('data_dir', None)
 
-        self.json_config_dir_path = os.path.join(self.work_dir, 'config')
-        self.json_config_file_path = os.path.join(self.work_dir, 'config', 'config_{}.json'.format(str(DownloadControl.count)))
+        if not os.path.exists(self.work_dir):
+            os.mkdir(self.work_dir)
+        
+        if not os.path.exists(self.data_dir):
+            os.mkdir(self.data_dir)
+
+        self.json_config_dir_path = os.path.join('config')
+        self.json_config_file_path = os.path.join('config', 'config_{}.json'.format(str(DownloadControl.count)))
 
         self.files_in_work_dir = []
         self.dirs_in_work_directory = []
@@ -28,6 +38,7 @@ class DownloadControl():
         self.lmb_is_dir = lambda dir: os.path.isdir(os.path.join(self.work_dir, dir))
 
         self.update_work_dir_data()
+        self.save_work_dir_data()
 
     def check_new_files(self, path_to_dir):
         """Функция проверки появления новых файлов в директории."""
@@ -52,15 +63,15 @@ class DownloadControl():
     def save_work_dir_data(self):
         if not os.path.exists(self.json_config_dir_path):
             os.mkdir(self.json_config_dir_path)
-        filename = ''
-        with open('work_data.json', 'w') as file:
+        with open(self.json_config_file_path, 'w') as file:
+            file.write(str(json.dumps(self.params_dict)))
             
 
 def main():
-    work_dir_pathes = (r'C:\Users\ocean\Desktop\DownloadManager\nn_rep\test_dir',)
-    data_dir_pathes = (r'C:\Users\ocean\Desktop\DownloadManager\nn_rep\data_dir',)
-    args = tuple(sys.argv)
-    input()
+    config = settings.Settings()
+    testControl = DownloadControl(config.start_set.get('Тест', None))
+
+    input('Ready')
 
 if __name__ == '__main__':
     main()
