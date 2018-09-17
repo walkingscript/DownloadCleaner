@@ -1,0 +1,25 @@
+{
+    "work_directory": "C:\\Users\\ocean\\Downloads",
+    "data_directory": "C:\\Users\\ocean\\Desktop\\Ваши_Загрузки",
+    "extensions_path": {
+        "py": "C:\\Users\\ocean\\Desktop\\Ваши_Загрузки\\python",
+        "pyw": "C:\\Users\\ocean\\Desktop\\Ваши_Загрузки\\python",
+        "csv": "C:\\Users\\ocean\\Desktop\\Ваши_Загрузки\\большие_данные",
+        "txt": "C:\\Users\\ocean\\Desktop\\Ваши_Загрузки\\текстовые_файлы",
+        "doc": "C:\\Users\\ocean\\Desktop\\Ваши_Загрузки\\документы",
+        "xls": "C:\\Users\\ocean\\Desktop\\Ваши_Загрузки\\таблицы",
+        "xlsx": "C:\\Users\\ocean\\Desktop\\Ваши_Загрузки\\таблицы",
+        "mp3": "C:\\Users\\ocean\\Desktop\\Ваши_Загрузки\\музыка",
+        "rar": "C:\\Users\\ocean\\Desktop\\Ваши_Загрузки\\архивы",
+        "7z": "C:\\Users\\ocean\\Desktop\\Ваши_Загрузки\\архивы",
+        "zip": "C:\\Users\\ocean\\Desktop\\Ваши_Загрузки\\архивы",
+        "jpg": "C:\\Users\\ocean\\Desktop\\Ваши_Загрузки\\картинки",
+        "jpeg": "C:\\Users\\ocean\\Desktop\\Ваши_Загрузки\\картинки",
+        "png": "C:\\Users\\ocean\\Desktop\\Ваши_Загрузки\\картинки\\png",
+        "gif": "C:\\Users\\ocean\\Desktop\\Ваши_Загрузки\\картинки\\gif",
+        "bmp": "C:\\Users\\ocean\\Desktop\\Ваши_Загрузки\\картинки\\bmp",
+        "wav": "C:\\Users\\ocean\\Desktop\\Ваши_Загрузки\\музыка\\wav",
+        "exe": "C:\\Users\\ocean\\Desktop\\Ваши_Загрузки\\запускаторы"
+    },
+    "exception_directories": []
+}
