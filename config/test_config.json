@@ -1,0 +1,25 @@
+{
+    "work_directory": "C:\\Users\\ocean\\Desktop\\nn_rep\\work_dir",
+    "data_directory": "C:\\Users\\ocean\\Desktop\\nn_rep\\data_dir",
+    "extensions_path": {
+        "py": "C:\\Users\\ocean\\Desktop\\nn_rep\\data_dir\\python",
+        "pyw": "C:\\Users\\ocean\\Desktop\\nn_rep\\data_dir\\python",
+        "csv": "C:\\Users\\ocean\\Desktop\\nn_rep\\data_dir\\большие_данные",
+        "txt": "C:\\Users\\ocean\\Desktop\\nn_rep\\data_dir\\текстовые_файлы",
+        "doc": "C:\\Users\\ocean\\Desktop\\nn_rep\\data_dir\\документы",
+        "xls": "C:\\Users\\ocean\\Desktop\\nn_rep\\data_dir\\таблицы",
+        "xlsx": "C:\\Users\\ocean\\Desktop\\nn_rep\\data_dir\\таблицы",
+        "mp3": "C:\\Users\\ocean\\Desktop\\nn_rep\\data_dir\\музыка",
+        "rar": "C:\\Users\\ocean\\Desktop\\nn_rep\\data_dir\\архивы",
+        "7z": "C:\\Users\\ocean\\Desktop\\nn_rep\\data_dir\\архивы",
+        "zip": "C:\\Users\\ocean\\Desktop\\nn_rep\\data_dir\\архивы",
+        "jpg": "C:\\Users\\ocean\\Desktop\\nn_rep\\data_dir\\картинки",
+        "jpeg": "C:\\Users\\ocean\\Desktop\\nn_rep\\data_dir\\картинки",
+        "png": "C:\\Users\\ocean\\Desktop\\nn_rep\\data_dir\\картинки\\png",
+        "gif": "C:\\Users\\ocean\\Desktop\\nn_rep\\data_dir\\картинки\\gif",
+        "bmp": "C:\\Users\\ocean\\Desktop\\nn_rep\\data_dir\\картинки\\bmp",
+        "wav": "C:\\Users\\ocean\\Desktop\\nn_rep\\data_dir\\музыка\\wav",
+        "exe": "C:\\Users\\ocean\\Desktop\\nn_rep\\data_dir\\запускаторы"
+    },
+    "exception_directories": []
+}
