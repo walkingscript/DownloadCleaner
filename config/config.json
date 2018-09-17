@@ -25,9 +25,9 @@
         "wav": "C:\\Users\\ocean\\Desktop\\Ваши_Загрузки\\музыка\\wav",
         "exe": "C:\\Users\\ocean\\Desktop\\Ваши_Загрузки\\execute",
         "msi": "C:\\Users\\ocean\\Desktop\\Ваши_Загрузки\\execute",
-	    "svg": "C:\\Users\\ocean\\Desktop\\Ваши_Загрузки\\векторная_графика",
-	    "json": "C:\\Users\\ocean\\Desktop\\Ваши_Загрузки\\json",
-	    "bat": "C:\\Users\\ocean\\Desktop\\Ваши_Загрузки\\пакетные_файлы"
+        "svg": "C:\\Users\\ocean\\Desktop\\Ваши_Загрузки\\векторная_графика",
+        "json": "C:\\Users\\ocean\\Desktop\\Ваши_Загрузки\\json",
+        "bat": "C:\\Users\\ocean\\Desktop\\Ваши_Загрузки\\пакетные_файлы"
     },
     "exception_directories": []
 }
