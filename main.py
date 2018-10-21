@@ -42,7 +42,8 @@ class DownloadControl():
         if not os.path.exists(self.DATA_DIR):
             os.mkdir(self.DATA_DIR)
 
-        self.lmb_is_file = lambda file: os.path.isfile(os.path.join(self.WORK_DIR, file))
+        # lambda-выражение в следующей строке возвращает True, если аргумент - файл, тип которого указан в файле конфигурации 
+        self.lmb_is_file = lambda file: os.path.isfile(os.path.join(self.WORK_DIR, file)) and (file.split('.')[-1] in self.EXTENSIONS_PATH.keys())
         self.lmb_is_dir = lambda dir_: os.path.isdir(os.path.join(self.WORK_DIR, dir_))
         self.cut_file_name = lambda s: ''.join(('\n\t', s))
 
