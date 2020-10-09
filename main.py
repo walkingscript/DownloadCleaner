@@ -6,17 +6,19 @@ import shutil
 import zipfile
 import datetime
 import collections
-
 import uuid
 
 import settings
 
+
 clear_commands = {'win32': 'cls', 'linux': 'clear'}
+
 
 class NoParamsError(Exception):
     def __init__(self, error_message):
         self.error_message = error_message
-        
+
+
 class DownloadControl():
     def __init__(self, params_dict):
         """Инициализация параметров"""
@@ -32,36 +34,44 @@ class DownloadControl():
         self.LOGGING = self.params_dict.get('logging', False)
         self.CONSOLE_OUT = self.params_dict.get('console_out', False)
         self.LOG_FILE = self.params_dict.get('log_file_path', 'log_file.txt')
-        
+
         self.files_in_work_dir = collections.deque()
         self.directories_in_work_dir = collections.deque()
 
         if not os.path.exists(self.WORK_DIR):
             os.mkdir(self.WORK_DIR)
-            
+
         if not os.path.exists(self.DATA_DIR):
             os.mkdir(self.DATA_DIR)
 
-        # lambda-выражение в следующей строке возвращает True, если аргумент - файл, тип которого указан в файле конфигурации 
-        self.lmb_is_file = lambda file: os.path.isfile(os.path.join(self.WORK_DIR, file)) and (file.split('.')[-1] in self.EXTENSIONS_PATH.keys())
-        self.lmb_is_dir = lambda dir_: os.path.isdir(os.path.join(self.WORK_DIR, dir_))
+        # lambda-выражение в следующей строке возвращает True,
+        # если аргумент - файл, тип которого указан в файле конфигурации 
+        self.lmb_is_file = lambda file: os.path.isfile(
+            os.path.join(self.WORK_DIR, file))
+            and (file.split('.')[-1] in self.EXTENSIONS_PATH.keys())
+        self.lmb_is_dir = lambda dir_: os.path.isdir(
+            os.path.join(self.WORK_DIR, dir_))
         self.cut_file_name = lambda s: ''.join(('\n\t', s))
 
-        self.universal_print("Старт программы. Инициализация параметров завершена успешно. \nВыполнение...")
+        self.universal_print("Старт программы. Инициализация параметров "\
+                             "завершена успешно. \nВыполнение...")
 
         self.update_work_dir_data()
         self.group_files()
 
     def update_work_dir_data(self):
         """Инициализация и обновление списков файлов и папок.
-        Функция получает список файлов и папок в директории и 
+        Функция получает список файлов и папок в директории и
         производит разбиение на файлы и папки для дальнейшей обработки."""
         data = os.listdir(self.WORK_DIR)
         self.files_in_work_dir.extend(list(filter(self.lmb_is_file, data)))
         self.directories_in_work_dir.extend(list(filter(self.lmb_is_dir, data)))
         time.sleep(1)
         if len(self.files_in_work_dir) > 0:
-            self.universal_print("Список файлов: ", *tuple(map(self.cut_file_name, list(self.files_in_work_dir))), '\n')
+            self.universal_print("Список файлов: ",
+                                 *tuple(map(self.cut_file_name,
+                                            list(self.files_in_work_dir))),
+                                 '\n')
 
     def group_files(self):
         while len(self.files_in_work_dir) > 0:
@@ -71,21 +81,26 @@ class DownloadControl():
                 devided = file.split('.')
                 file_name = ''.join(devided[0:-1])
                 file_extension = devided[-1]
-                path_for_file = self.EXTENSIONS_PATH.get(file_extension.lower(), self.DATA_DIR)
+                path_for_file = self.EXTENSIONS_PATH.get(file_extension.lower(),
+                                                         self.DATA_DIR)
                 os.makedirs(path_for_file, exist_ok=True)
                 from_ = os.path.join(self.WORK_DIR, file)
                 to = os.path.join(path_for_file, file)
 
                 # является ли файл zip-архивом, если да - разархивируем
                 if zipfile.is_zipfile(from_):
-                    destination_zip = os.path.join(self.UNPACKED_ZIP_DIR, file_name)
+                    destination_zip = os.path.join(self.UNPACKED_ZIP_DIR,
+                                                   file_name)
                     os.makedirs(destination_zip, exist_ok=True)
                     zf = zipfile.ZipFile(from_)
                     zf.extractall(destination_zip)
                     zf.close()
 
                 while os.path.exists(to):
-                    new_file_name = ''.join((file_name, '-', str(uuid.uuid4()), '.', file_extension))
+                    new_file_name = ''.join((file_name, '-',
+                                             str(uuid.uuid4()),
+                                             '.',
+                                             file_extension))
                     to = os.path.join(path_for_file, new_file_name)
 
                 response = shutil.copy(from_, to)
@@ -93,7 +108,9 @@ class DownloadControl():
                     os.remove(from_)
 
             except Exception as e:
-               self.universal_print("Вызвано исключение ", str(e.__class__), "в функции group_files(self)")
+               self.universal_print("Вызвано исключение ",
+                                    str(e.__class__),
+                                    "в функции group_files(self)")
 
     def universal_print(self, *args, **kwargs):
         """Функция выводит информацию в консоль и производит запись в log-файл.
@@ -108,7 +125,7 @@ class DownloadControl():
         if self.CONSOLE_OUT:
             print(message, **kwargs)
 
-                     
+
 def main():
     config = settings.Settings(os.path.join('config', 'config.json'))
     control = DownloadControl(config.configurational_dict)
@@ -119,6 +136,7 @@ def main():
             control.group_files()
         time.sleep(1)
         #os.system(clear_commands.get(sys.platform, ''))
+
 
 if __name__ == '__main__':
     main()
